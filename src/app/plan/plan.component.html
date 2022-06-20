@@ -1,6 +1,10 @@
 <mat-card class="m-3">
   <mat-card-title>{{ title }}</mat-card-title>
   <mat-card-content>
-    Here is the plan
+    <p *ngIf="plan; else noPlan">Here is the plan</p>
+    <ng-template #noPlan>
+
+    </ng-template>
+    <p>Please fill the Planner form and click calculate to show your Finance plan!</p>
   </mat-card-content>
 </mat-card>
