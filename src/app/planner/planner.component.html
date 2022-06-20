@@ -1,3 +1,39 @@
 <mat-card class="m-3">
-  <mat-card-title>Planner</mat-card-title>
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content class="pt-5">
+    <form>
+      <mat-form-field class="w-full mb-5" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+               placeholder="Ex. pat@example.com" (input)="handleEmailChange($event)">
+        <mat-hint>* Required field</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full mb-5" appearance="fill">
+        <mat-label>Enter your income</mat-label>
+        <input type="number" matInput [formControl]="incomeFormControl" [errorStateMatcher]="matcher"
+               placeholder="Ex. pat@example.com" [(ngModel)]="income">
+        <mat-hint>* Required field</mat-hint>
+        <mat-error *ngIf="incomeFormControl.hasError('min') && !incomeFormControl.hasError('required')">
+          The minimum income is 0
+        </mat-error>
+        <mat-error *ngIf="incomeFormControl.hasError('required')">
+          Income is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions class="text-end">
+    <button mat-raised-button color="primary" [disabled]="isCalculating"
+            (click)="calculatePlan()">{{ isCalculating ? 'Calculating plan...' : 'Calculate'}}</button>
+    <button mat-button color="secondary">Reset</button>
+  </mat-card-actions>
+  <mat-card-footer>
+    {{ income }}
+  </mat-card-footer>
 </mat-card>
