@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-
-interface Plan {
-
-}
+import { Component, Input, OnInit } from '@angular/core'
+import { IPlan } from '../app.component'
 
 @Component({
   selector: 'st-plan',
@@ -11,5 +8,5 @@ interface Plan {
 })
 export class PlanComponent {
   title = 'Finance plan'
-  plan: null | Plan = null
+  @Input('st-plan') plan: null | IPlan = null
 }

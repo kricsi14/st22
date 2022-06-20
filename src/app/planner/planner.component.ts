@@ -1,6 +1,7 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core'
+import { IPlan } from '../app.component'
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,6 +20,7 @@ export class PlannerComponent {
   title = 'Planner form'
   isCalculating = false
   income: number = 0
+  email: string = ''
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email])
   incomeFormControl = new FormControl('', [Validators.required, Validators.min(0)])
@@ -27,14 +29,21 @@ export class PlannerComponent {
 
   handleEmailChange (event: Event) {
     console.log('Email entered:', (<HTMLInputElement>event.target).value)
+    this.email = (<HTMLInputElement>event.target).value
   }
 
+  @Output() planCalculated = new EventEmitter<IPlan>()
+
   calculatePlan () {
+    // TODO show alert Snack
+    if (this.emailFormControl.invalid || this.incomeFormControl.invalid) return
+
     console.log('Calculating...')
     this.isCalculating = true
     setTimeout(() => {
       this.isCalculating = false
       console.log('Calculating complete!')
+      this.planCalculated.emit({ income: this.income, email: this.email })
     }, 5000)
   }
 }
