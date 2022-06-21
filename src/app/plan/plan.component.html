@@ -1,12 +1,9 @@
-<mat-card class="m-3">
-  <mat-card-title>{{ title }}</mat-card-title>
-  <mat-card-content class="pt-5">
-    <div *ngIf="plan; else noPlan">
-      <p>Email: {{plan.email}}</p>
-      <p>Income: {{plan.income}}</p>
-    </div>
-    <ng-template #noPlan>
-      <p>Please fill the Planner form and click calculate to show your Finance plan!</p>
-    </ng-template>
-  </mat-card-content>
-</mat-card>
+<st-card [title]="'Finance plan'">
+  <div *ngIf="plan !== null; else noPlan" slot="content">
+    <p>Email: {{plan.email}}</p>
+    <p>Income: {{plan.income}}</p>
+  </div>
+  <ng-template #noPlan>
+    <p>Please fill the Planner form and click calculate to show your Finance plan!</p>
+  </ng-template>
+</st-card>

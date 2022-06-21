@@ -1,0 +1,9 @@
+<mat-card class="m-3">
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content class="pt-5">
+    <ng-content select="[slot=content]"></ng-content>
+  </mat-card-content>
+  <mat-card-actions class="text-end">
+    <ng-content select="[slot=actions]"></ng-content>
+  </mat-card-actions>
+</mat-card>

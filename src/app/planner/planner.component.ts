@@ -17,7 +17,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./planner.component.scss']
 })
 export class PlannerComponent {
-  title = 'Planner form'
   isCalculating = false
   income: number = 0
   email: string = ''
