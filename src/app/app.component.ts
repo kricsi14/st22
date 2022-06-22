@@ -3,6 +3,7 @@ import { Component } from '@angular/core'
 export interface IPlan {
   email: string
   income: number
+  outcome: number
 }
 
 @Component({

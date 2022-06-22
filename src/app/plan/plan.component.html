@@ -8,6 +8,7 @@
     <div *ngIf="plan !== null; else noPlan">
       <p>Email: {{plan.email}}</p>
       <p>Income: {{plan.income}}</p>
+      <p>Outcome: {{plan.outcome}}</p>
     </div>
     <ng-template #noPlan>
       <p>Please fill the Planner form and click calculate to show your Finance plan!</p>

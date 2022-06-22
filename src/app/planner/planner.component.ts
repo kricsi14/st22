@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, DoCheck, EventEmitter, OnChanges, Output } from '@angular/core'
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core'
 import { IPlan } from '../app.component'
@@ -16,18 +16,26 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './planner.component.html',
   styleUrls: ['./planner.component.scss']
 })
-export class PlannerComponent {
+export class PlannerComponent implements OnChanges, DoCheck {
   isCalculating = false
-  income: number = 0
+  income: number | null = null
   email: string = ''
+  monthlyOutcome: number | null = null
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email])
   incomeFormControl = new FormControl('', [Validators.required, Validators.min(0)])
 
   matcher = new MyErrorStateMatcher()
 
+  ngDoCheck () {
+    console.log('ngDoCheck called')
+  }
+
+  ngOnChanges () {
+    console.log('ngOnChanges called')
+  }
+
   handleEmailChange (event: Event) {
-    console.log('Email entered:', (<HTMLInputElement>event.target).value)
     this.email = (<HTMLInputElement>event.target).value
   }
 
@@ -42,7 +50,9 @@ export class PlannerComponent {
     setTimeout(() => {
       this.isCalculating = false
       console.log('Calculating complete!')
-      this.planCalculated.emit({ income: this.income, email: this.email })
+      if (this.monthlyOutcome !== null && this.income !== null) {
+        this.planCalculated.emit({ income: this.income, email: this.email, outcome: this.monthlyOutcome })
+      }
     }, 2000)
   }
 }
