@@ -1,9 +1,16 @@
 <st-card [title]="'Finance plan'">
-  <div *ngIf="plan !== null; else noPlan" slot="content">
-    <p>Email: {{plan.email}}</p>
-    <p>Income: {{plan.income}}</p>
-  </div>
-  <ng-template #noPlan>
-    <p>Please fill the Planner form and click calculate to show your Finance plan!</p>
-  </ng-template>
+  <ng-container slot="content">
+    <div *ngIf="hasNewPlan">
+      <p>There is a newer plan! To change the old plan click the Update button below.</p>
+      <button mat-raised-button color="primary" (click)="handleUpdateClick()">Update</button>
+      <mat-divider class="!my-5"></mat-divider>
+    </div>
+    <div *ngIf="plan !== null; else noPlan">
+      <p>Email: {{plan.email}}</p>
+      <p>Income: {{plan.income}}</p>
+    </div>
+    <ng-template #noPlan>
+      <p>Please fill the Planner form and click calculate to show your Finance plan!</p>
+    </ng-template>
+  </ng-container>
 </st-card>

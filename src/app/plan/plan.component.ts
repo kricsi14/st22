@@ -12,13 +12,14 @@ export class PlanComponent implements OnChanges {
   hasNewPlan: boolean = false
 
   ngOnChanges () {
+    console.log('CHANGES')
     if (this.plan === null) this.plan = this.inputPlan
     else {
       this.hasNewPlan = true
     }
   }
 
-  dropPreviousPlan () {
+  handleUpdateClick () {
     this.hasNewPlan = false
     this.plan = this.inputPlan
   }

@@ -43,6 +43,6 @@ export class PlannerComponent {
       this.isCalculating = false
       console.log('Calculating complete!')
       this.planCalculated.emit({ income: this.income, email: this.email })
-    }, 5000)
+    }, 2000)
   }
 }
