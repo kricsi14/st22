@@ -13,9 +13,5 @@ export interface IPlan {
 })
 
 export class AppComponent {
-  plan: null | IPlan = null
 
-  handlePlanCalculated (plan: IPlan) {
-    this.plan = plan
-  }
 }

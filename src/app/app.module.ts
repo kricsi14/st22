@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input'
 import { CardComponent } from './card/card.component'
 import { MatDividerModule } from '@angular/material/divider'
 import { HighlightNumberDirective } from './directives/highlight-number.directive'
+import { AboutPageComponent } from './pages/about-page/about-page.component'
+import { PlannerPageComponent } from './pages/planner-page/planner-page.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HighlightNumberDirective } from './directives/highlight-number.directiv
     PlannerComponent,
     PlanComponent,
     CardComponent,
-    HighlightNumberDirective
+    HighlightNumberDirective,
+    AboutPageComponent,
+    PlannerPageComponent
   ],
   imports: [
     BrowserModule,

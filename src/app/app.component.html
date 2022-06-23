@@ -1,11 +1,5 @@
-<mat-toolbar>
-  ST22 Finance planner
+<mat-toolbar class="flex justify-between">
+  <a routerLink="/">ST22 Finance planner</a>
+  <a mat-button routerLink="/about">About</a>
 </mat-toolbar>
-<div class="flex flex-wrap p-3">
-  <div class="flex-1 basis-full">
-    <st-planner (planCalculated)="handlePlanCalculated($event)"></st-planner>
-  </div>
-  <div class="flex-1 basis-full">
-    <st-plan [st-plan]="plan"></st-plan>
-  </div>
-</div>
+<router-outlet></router-outlet>
