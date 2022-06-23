@@ -2,6 +2,7 @@ import { Component, DoCheck, EventEmitter, OnChanges, Output } from '@angular/co
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core'
 import { IPlan } from '../app.component'
+import { LoggingService } from '../services/logging.service'
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -27,12 +28,16 @@ export class PlannerComponent implements OnChanges, DoCheck {
 
   matcher = new MyErrorStateMatcher()
 
+  constructor (private logService: LoggingService) {
+
+  }
+
   ngDoCheck () {
-    console.log('ngDoCheck called')
+    this.logService.logInfo('ngDoCheck called')
   }
 
   ngOnChanges () {
-    console.log('ngOnChanges called')
+    this.logService.logInfo('ngOnChanges called')
   }
 
   handleEmailChange (event: Event) {
@@ -43,7 +48,11 @@ export class PlannerComponent implements OnChanges, DoCheck {
 
   calculatePlan () {
     // TODO show alert Snack
-    if (this.emailFormControl.invalid || this.incomeFormControl.invalid) return
+    if (this.emailFormControl.invalid || this.incomeFormControl.invalid) {
+
+      this.logService.logError('Email or income is incorrect!')
+      return
+    }
 
     console.log('Calculating...')
     this.isCalculating = true
