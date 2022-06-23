@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input'
 import { CardComponent } from './card/card.component'
 import { MatDividerModule } from '@angular/material/divider'
+import { HighlightNumberDirective } from './directives/highlight-number.directive'
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatDividerModule } from '@angular/material/divider'
     PlannerComponent,
     PlanComponent,
     CardComponent,
+    HighlightNumberDirective
   ],
   imports: [
     BrowserModule,
