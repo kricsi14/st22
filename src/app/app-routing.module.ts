@@ -5,12 +5,21 @@ import { PlannerPageComponent } from './pages/planner-page/planner-page.componen
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/planner',
+    pathMatch: 'full'
+  },
+  {
+    path: 'planner',
+    component: PlannerPageComponent
+  },
+  {
     path: 'about',
     component: AboutPageComponent
   },
   {
-    path: '',
-    component: PlannerPageComponent
+    path: '**',
+    redirectTo: ''
   }
 ]
 
